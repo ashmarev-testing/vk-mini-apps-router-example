@@ -1,5 +1,5 @@
+// Home
 import React from "react";
-
 import {
   Panel,
   PanelHeader,
@@ -12,9 +12,11 @@ import {
 } from "@vkontakte/vkui";
 import { GoFunctionProp, NavProp, UserInfo } from "../types";
 import { useEnableSwipeBack } from "@vkontakte/vk-mini-apps-router";
-import { NasaItem } from "../components";
+//import { NasaItem } from "../components";
 import { useSelector } from "react-redux";
 import { Case } from "../components";
+import { Pdf } from "../components";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -81,6 +83,16 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
       </Group>
       <Group>
         <Case></Case>
+      </Group>
+      <Group>
+        <PDFDownloadLink
+          document={<Pdf data={query ? query : ""} />}
+          fileName="list.pdf"
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download Pdf"
+          }
+        </PDFDownloadLink>
       </Group>
     </Panel>
   );
