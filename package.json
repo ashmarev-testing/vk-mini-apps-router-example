@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "private": true,
   "dependencies": {
+    "@react-pdf/renderer": "^3.3.8",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
