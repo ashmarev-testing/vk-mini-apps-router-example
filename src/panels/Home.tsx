@@ -1,4 +1,4 @@
-// Home
+// Home.tsx
 import React from "react";
 import {
   Panel,
@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { Case } from "../components";
 import { Pdf } from "../components";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import { CardItem } from "../types";
 
 type HomeProps = NavProp &
   GoFunctionProp & {
@@ -29,6 +30,14 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
   const query = useSelector(
     (state: { user: { query: string } }) => state.user.query,
   ) as string;
+
+  const cardItem: CardItem = {
+    text: "Текст1",
+    geolocation: "11",
+    dateCreated: "2022-01-01",
+    width: 10,
+    height: 20,
+  };
 
   return (
     <Panel nav={nav}>
@@ -85,10 +94,7 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
         <Case></Case>
       </Group>
       <Group>
-        <PDFDownloadLink
-          document={<Pdf data={query ? query : ""} />}
-          fileName="list.pdf"
-        >
+        <PDFDownloadLink document={<Pdf {...cardItem} />} fileName="list.pdf">
           {({ blob, url, loading, error }) =>
             loading ? "Loading document..." : "Download Pdf"
           }

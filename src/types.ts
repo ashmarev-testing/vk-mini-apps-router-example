@@ -30,3 +30,11 @@ export type CaseItem = {
   language: string;
   text: string | null;
 };
+
+export type CardItem = {
+  text: string;
+  geolocation: string;
+  dateCreated: string;
+  width: number;
+  height: number;
+};
