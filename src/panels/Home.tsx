@@ -35,8 +35,8 @@ export const Home = ({ nav, go, fetchedUser }: HomeProps) => {
     text: "Текст1",
     geolocation: "11",
     dateCreated: "2022-01-01",
-    width: 10,
-    height: 20,
+    width: 40,
+    height: 10,
   };
 
   return (

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     margin: 10, // отступ слева
     flexDirection: "row", // направление в строку
     flexWrap: "wrap", // перенос на следующую строку
-    flexStart: 1, // отступ слева
+    flexStart: 0, // отступ слева
     backgroundColor: "#FFFFFF", // цвет фона
   },
   text: {
@@ -36,21 +36,24 @@ export const Pdf = (props: CardItem) => {
 
   if (
     props.width < 277 &&
-    props.height < 190 &&
+    props.height < 200 &&
     props.width > props.height &&
     props.width > 0 &&
     props.height > 0
   ) {
-    numbersInRow = Math.floor(277 / props.width);
-    numbersInColumn = Math.floor(190 / props.height);
-    numbersOfCard = numbersInRow * numbersInColumn;
+    numbersInRow = 277 / props.width;
+    console.log(numbersInRow);
+    numbersInColumn = 200 / props.height;
+    console.log(numbersInColumn);
+    numbersOfCard = Math.floor(numbersInRow * numbersInColumn);
+    console.log(numbersOfCard);
   }
 
   const stylesCard = StyleSheet.create({
     card: {
       margin: 0,
       padding: 0,
-      border: "1mm solid black",
+      borderWidth: 0.5,
       width: props.width * 2.834, // из mm в pt
       height: props.height * 2.834, // из mm в pt
     },
@@ -59,12 +62,6 @@ export const Pdf = (props: CardItem) => {
   const DocData = () => (
     <Document>
       <Page size="A4" orientation="landscape" style={styles.page}>
-        if numbersOfCard === 0{" "}
-        {
-          <View>
-            <Text style={styles.text}>Измените размер карточки</Text>
-          </View>
-        }
         {Array.from({ length: numbersOfCard }).map((_, index) => (
           <View style={stylesCard.card} key={index}>
             <Text style={styles.text}>{props.text}</Text>
